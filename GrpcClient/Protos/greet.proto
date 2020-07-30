@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService1";
+
+package greet;
+
+service Greeter {
+  // Gets current standings
+  rpc GetCurrentStandings (CurrentStandingsRequest) returns (CurrentStandingsResponse);
+}
+
+// Request message
+message CurrentStandingsRequest{
+	int32 leagueId = 1; 
+}
+
+// Response message
+message CurrentStandingsResponse{
+	message Standing{
+		string teamName = 1;
+		int32 rank = 2;
+		int32 matchesPlayed = 3;
+		int32 win = 4;
+		int32 draw = 5;
+		int32 lose = 6;
+		int32 goalsFor = 7;
+		int32 goalsAgainst = 8;
+		int32 goalsDiff = 9;
+		int32 points = 10;
+	}
+	repeated Standing stangings = 1;
+}
